@@ -1,0 +1,47 @@
+<div class="formContainer">
+    <from calss="from-horizontal newsltterFrom" role="from" action="/process?from=newsletter" method="POST" >
+        <input type="hidden" name="_csrf" value="{{csrf}}">
+        <div class="from-hroup">
+        <label for="filedName" class="col-sm-2 control-lable">Name</label>
+        <div class="clo-sm-4">
+                <input type="text" class="from-control" id="filedName" name="name">
+        </div>
+        </div>
+        <div class="from-group">
+            <label for="filedEmail" class="col-sm-2 control-lable">Email</label>
+        <div class="clo-sm-4">
+                <input type="text" class="from-control" id="filedEmail" name="email">
+        </div>
+        </div>
+        <div class="from-group">
+            <div class="col-sm-offset-2 col-sm-4">
+                <button type="submit" class="btn btn-default">Register</button>
+            </div>
+        </div>
+    </from>
+</div>
+{{#section 'jquery'}}
+    <script>
+        $(document).ready(function(){
+            $('.newsletterFrom').on('submit',function(evt){
+                evt.preventDefault();
+                var action = $(this).attr('action');
+                var $container = $(this).closest('.fromContainer');
+                $.ajax({
+                    url:action,
+                    type:'POST',
+                    success:function(data){
+                        if(data.success){
+                            $container.html('<h2>Thank you</h2>');
+                        }else{
+                            $container.html('There was a problem ');
+                        }
+                    },
+                    error:function(){
+                        $container.html('There was a problem');
+                    }
+                });
+            });
+        });
+    </script>
+{{/section}}
