@@ -1,4 +1,5 @@
 var express = require('express');
+var fortune = require('./lib/fortune.js');
 
 var app = express();
 
@@ -15,21 +16,12 @@ app.get('/',function(req,res){
 	res.render('home');
 });
 
-app.get('/headers',function(req,res){
-	res.set('Content-Type','text/plain');
-	var s = '';
-	for(var name in req.headers)
-		s += name + ':' + req.headers[name] + '\n';
-	res.send(s);
-});
-
-app.get('/about',function(){
-	res.render('about');
+app.get('/about',function(req,res){
+	/*res.render('about');*/
+	//var randomFortune = fortunes[Math.floor(Math.random() * fortunes.length)];
+	res.render('about',{fortune: fortune.getFortune()});
 })
 
-app.get('/error',function(req,res){
-	res.status(500).render('error');
-})
 
 //定制404页面
 app.use(function(req,res,next){
