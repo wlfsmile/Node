@@ -13,5 +13,8 @@
     "express-generator": "^4.15.0",
     "express3-handlebars": "^0.5.2",
     "react": "^15.6.1"
+  },
+  "devDependencies": {
+    "merge-descriptors": "^1.0.1"
   }
 }
