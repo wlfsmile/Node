@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <link rel="stylesheet" href="stylesheets/bootstrap.min.css">  
+  <script type="text/javascript" src="javascripts/jquery-3.1.0.min.js"></script>  
+  <script type="text/javascript" src="javascripts/bootstrap.min.js"></script> 
+  <body>
+    <div>
+      <form class="form" role="form">
+      <fieldset>
+          <div class="form-group">
+            <label for="name">用户名：</label>
+            <input name="name" type="text" class="form-control" id="name" />
+          </div>
+          <div class="form-group">
+            <label for="password">密码</label>
+            <input name="password" type="text" class="form-control" id="password" />
+          </div>
+          <div class="form-group">
+            <label for="passwordAgin">确认密码</label>
+            <input name="passwordAgin" type="text" class="form-control" id="passwordAgin" />
+          </div>
+          <div class="form-group">  
+            <button type="button" class="btn bg-primary btn-block" id="register1">注册</button>  
+          </div>  
+          <div class="form-group">  
+            <button type="button" class="btn btn-info btn-block" id="login1">登录</button>
+          </div>  
+        </form>
+      </fieldset>
+    </div>
+
+    <script type="text/javascript">
+      $('#login1').click(function(){
+        location.href = '/login';
+      });
+
+      $('#register1').click(function(){
+        var username = $('#name').val();
+        var password = $('#password').val();
+        var passwordAgin = $('#passwordAgin').val();
+
+        if(password !== passwordAgin){
+          $("#password").css("boder","1px solid red");  
+          $("#passwordAgin").css("boder","1px solid red");  
+        }else{
+          var data = {
+            username : username,
+            password : password
+          };
+
+          $.ajax({
+            url : '/register',
+            type : 'POST',
+            data : data,
+            success : function(data){
+              if (data.status == 1) {
+                location.href = '/login';
+              }
+            },
+            error : function(){ 
+              location.href = '/sregister';
+            }
+          });
+        }
+      });
+    </script>
+  </body>
+</html>
