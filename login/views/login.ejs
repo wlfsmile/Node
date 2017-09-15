@@ -9,7 +9,7 @@
   <script type="text/javascript" src="javascripts/bootstrap.min.js"></script>  
   <body>
     <div>
-      <form class="form" role="form">
+      <form class="form" method="post" action="/home" role="form">
         <fieldset>
           <div class="form-group">
             <label for="name">用户名：</label>
@@ -19,44 +19,47 @@
             <label for="password">密码</label>
             <input name="password" type="text" class="form-control" id="password" />
           </div>
-          <div class="form-group">  
+          <!-- <div class="form-group">  
             <button type="button" class="btn bg-primary btn-block" id="register0">注册</button>  
-          </div>
+          </div> -->
           <div class="form-group">  
-            <button type="button" class="btn btn-info btn-block" id="login0">登录</button>  
+            <input type="submit" class="btn btn-info btn-block" id="login0" value="登陆">  
           </div> 
         </fieldset> 
       </form>
     </div>
 
     <script type="text/javascript">
-      $('#register0').click(function(){
+      /*$('#register0').click(function(){
         location.href = '/register';
-      });
-
+      });*/
+/*
       $('#login0').click(function(){
         var username = $('#name').val();
         var password = $('#password').val();
         var data = {
-          username : username,
+          name : username,
           password : password
         };
 
         $.ajax({
-          url : '/login',
+          url : '/home',
           type : 'POST',
+          dataType: 'json',
           data : data,
           success : function(data){
-            if (data.status == 1) {
+            console.log(1);
+            //if (data.status == 1) {
               location.href = '/home';
-            }
+            //}
           },
           error : function(){
-            location.href = '/login';
+            console.log(2);
+            //location.href = '/login';
           }
         });
 
-      });
+      });*/
     </script>
   </body>
 </html>

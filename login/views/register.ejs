@@ -48,8 +48,8 @@
           $("#passwordAgin").css("boder","1px solid red");  
         }else{
           var data = {
-            username : username,
-            password : password
+            uname : username,
+            upwd : password
           };
 
           $.ajax({
@@ -62,7 +62,7 @@
               }
             },
             error : function(){ 
-              location.href = '/sregister';
+              location.href = '/register';
             }
           });
         }
